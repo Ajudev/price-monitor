@@ -1,0 +1,10 @@
+# Django
+**/__pycache__/**
+**/migrations/**
+**/static/**
+.env
+
+#Others
+.vscode/*
+.DS_Store
+venv/*
