@@ -12,6 +12,7 @@ psycopg2 = "*"
 djangorestframework-simplejwt = "*"
 python-dotenv = "*"
 requests = "*"
+channels-redis = "*"
 
 [dev-packages]
 

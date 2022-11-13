@@ -30,6 +30,7 @@ SECRET_KEY = os.getenv('PROJECT_SECRET')
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'channels',
     'rest_framework_simplejwt',
 
     'api.apps.ApiConfig',
@@ -86,6 +86,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'price_monitor.wsgi.application'
+ASGI_APPLICATION = 'price_monitor.asgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
