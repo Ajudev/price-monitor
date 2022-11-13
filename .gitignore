@@ -2,6 +2,7 @@
 **/__pycache__/**
 **/migrations/**
 **/static/**
+**/celerybeat-schedule
 .env
 
 #Others

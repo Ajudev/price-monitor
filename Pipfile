@@ -13,6 +13,7 @@ djangorestframework-simplejwt = "*"
 python-dotenv = "*"
 requests = "*"
 channels-redis = "*"
+celery = "*"
 
 [dev-packages]
 
