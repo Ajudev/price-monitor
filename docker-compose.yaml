@@ -7,7 +7,7 @@ services:
       - db_data:/var/lib/postgresql/data
     restart: always
     healthcheck:
-      test: [ "CMD-SHELL", "sh -c 'pg_isready -U app -d pricedb'"]
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U app -d pricedb'" ]
       interval: 10s
       timeout: 10s
       retries: 2
@@ -18,7 +18,7 @@ services:
       PGUSER: app
     ports:
       - "0.0.0.0:2345:5432"
-  
+
   redis_service:
     image: redis
     container_name: rates_redis
@@ -26,19 +26,20 @@ services:
     ports:
       - "0.0.0.0:9736:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 10s
       timeout: 10s
       retries: 2
     command: redis-server
     volumes:
       - cache:/data
-      
+
   django_app:
     container_name: rates_django
     build: .
     command: >
-      sh -c "python manage.py migrate --settings price_monitor.settings.production &&
+      sh -c "python manage.py makemigrations api --settings price_monitor.settings.production &&
+            python manage.py migrate --settings price_monitor.settings.production &&
             python manage.py runserver --settings price_monitor.settings.production 0.0.0.0:8000"
     volumes:
       - django_app:/app
@@ -49,7 +50,7 @@ services:
         condition: service_healthy
     ports:
       - "0.0.0.0:5678:8000"
-  
+
   celery_worker:
     container_name: rates_celery_worker
     build:
@@ -62,7 +63,7 @@ services:
       - db
       - redis_service
       - django_app
-  
+
   celery_beat:
     container_name: rates_celery_beat
     build:
