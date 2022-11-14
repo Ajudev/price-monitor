@@ -3,6 +3,10 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 
 class RatesConsumer(AsyncWebsocketConsumer):
+    """
+    Class which defines the logic for websocket connection. It defines method on what happens when users
+    connect to websocket, disconnect etc.
+    """
     async def connect(self):
         self.room_group_name = 'broadcast'
 

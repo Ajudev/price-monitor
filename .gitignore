@@ -3,7 +3,6 @@
 **/migrations/**
 **/static/**
 **/celerybeat-schedule
-.env
 
 #Others
 .vscode/*

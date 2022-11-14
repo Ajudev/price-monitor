@@ -3,6 +3,7 @@
 */*/__pycache__/*
 **/venv
 **/.dockerignore
+**/.local.env
 **/.git
 **/.gitignore
 **/.project

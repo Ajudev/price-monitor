@@ -38,8 +38,8 @@ services:
     container_name: rates_django
     build: .
     command: >
-      sh -c "python manage.py migrate --settings price_monitor.settings.local &&
-            python manage.py runserver --settings price_monitor.settings.local 0.0.0.0:8000"
+      sh -c "python manage.py migrate --settings price_monitor.settings.production &&
+            python manage.py runserver --settings price_monitor.settings.production 0.0.0.0:8000"
     volumes:
       - django_app:/app
     depends_on:
@@ -58,11 +58,6 @@ services:
       sh -c "celery -A price_monitor worker -l info"
     volumes:
       - django_app:/app
-    environment:
-      DB_HOST: db
-      DB_NAME: pricedb
-      DB_USER: app
-      DB_PASS: sp@Ju8lfr12#unotid09
     depends_on:
       - db
       - redis_service
@@ -76,11 +71,6 @@ services:
       sh -c "celery -A price_monitor beat -l info"
     volumes:
       - django_app:/app
-    environment:
-      DB_HOST: db
-      DB_NAME: pricedb
-      DB_USER: app
-      DB_PASS: sp@Ju8lfr12#unotid09
     depends_on:
       - db
       - redis_service

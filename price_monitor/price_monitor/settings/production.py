@@ -2,9 +2,9 @@ from .base import *
 from dotenv import load_dotenv
 import os
 
-DEBUG = True
+DEBUG = False
 
-load_dotenv(os.path.join(BASE_DIR, 'price_monitor/settings/.local.env'))
+load_dotenv()
 
 SECRET_KEY = os.getenv('PROJECT_SECRET')
 
