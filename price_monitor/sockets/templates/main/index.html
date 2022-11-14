@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Live Rates</title>
+</head>
+<body>
+    <h1>BTC to USD Live Rates</h1><br>
+    <div id="chat-log"></div><br>
+    <script>
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/rates'
+        );
+
+        chatSocket.onmessage = function(e) {
+            console.log(e);
+            console.log(e.data);
+            const data = JSON.parse(e.data);
+            document.getElementById('chat-log').innerHTML += data.message+"<br>";
+        };
+
+        chatSocket.onclose = function(e) {
+            document.getElementById('chat-log').innerHTML += "Connection Terminated";
+            console.error('Chat socket closed unexpectedly');
+            chatSocket.close();
+        };
+    </script>
+</body>
+</html>
